@@ -22,17 +22,19 @@ public struct DoubleColoumnJustForPadNavigationViewStyle: NavigationViewStyle {
     public init() {}
 
     public func _body(configuration: _NavigationViewStyleConfiguration) -> some View {
-        if device == .pad {
-            NavigationView {
-                configuration.content
-            }
-            .navigationViewStyle(DoubleColumnNavigationViewStyle())
-        } else {
-            NavigationView {
-                configuration.content
-            }
-            .navigationViewStyle(StackNavigationViewStyle())
-        }
+		Group {
+			if device == .pad {
+				NavigationView {
+					configuration.content
+				}
+				.navigationViewStyle(DoubleColumnNavigationViewStyle())
+			} else {
+				NavigationView {
+					configuration.content
+				}
+				.navigationViewStyle(StackNavigationViewStyle())
+			}
+		}
     }
 
     public func _columnBasedBody(configuration: _NavigationViewStyleConfiguration) -> EmptyView {
@@ -53,12 +55,14 @@ public extension View {
 struct DoubleColoumnJustForPadNavigationViewModifier: ViewModifier {
     @Environment(\.device) var device
     public func body(content: Content) -> some View {
-        if device == .pad {
-            content
-                .navigationViewStyle(DoubleColumnNavigationViewStyle())
-        } else {
-            content
-                .navigationViewStyle(StackNavigationViewStyle())
-        }
+		Group {
+			if device == .pad {
+				content
+					.navigationViewStyle(DoubleColumnNavigationViewStyle())
+			} else {
+				content
+					.navigationViewStyle(StackNavigationViewStyle())
+			}
+		}
     }
 }

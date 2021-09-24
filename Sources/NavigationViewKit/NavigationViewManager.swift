@@ -126,7 +126,7 @@ public class NavigationViewManager {
 
         let tag: String
         let animated: Bool
-        @ViewBuilder var view: () -> AnyView
+        var view: () -> AnyView
     }
 
     /// 使用Notification来返回根视图，将所需信息包装成BackToRootItem
